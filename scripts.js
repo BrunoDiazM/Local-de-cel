@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/* Buscador */
+/* buscador */
 
 function filterProducts() {
   const input = document.getElementById("searchInput");

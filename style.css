@@ -9,7 +9,7 @@ body {
   background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura de la ventana */
+  min-height: 100vh;
 }
 
 header {
@@ -37,7 +37,7 @@ header nav ul li a {
 
 main {
   padding: 20px;
-  flex: 1; /* Permite que el main ocupe el espacio restante */
+  flex: 1;
 }
 
 .quienes-somos {
@@ -63,18 +63,19 @@ main {
 }
 
 .product-image {
-  max-width: 350px; /* Aumenta el tamaño de las imágenes */
+  max-width: 350px;
   margin: 10px;
-  border: 5px solid #333; /* Borde alrededor de las imágenes */
-  border-radius: 7px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para un efecto de profundidad */
-  transition: transform 0.3s; /* Transición suave para el efecto hover */
+  border: 5px solid #333;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
 }
 
 .product-image:hover {
-  transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+  transform: scale(1.05);
 }
 
+/* footer */
 .footer {
   background-color: #333;
   color: white;
@@ -109,7 +110,7 @@ main {
   color: #ff6700;
 }
 
-/*Dark Mode*/
+/*Modo oscuro*/
 .dark-mode {
   background-color: #222;
   color: white;
