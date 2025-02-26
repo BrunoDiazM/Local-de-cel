@@ -97,3 +97,21 @@ function removeFromCart(productName) {
   cart = cart.filter((item) => item.name !== productName);
   updateCart();
 }
+
+/* Alert */
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Pedimos el nombre al usuario
+  let nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:");
+
+  // Si el usuario ingresa un nombre y no cancela el prompt
+  if (nombreUsuario) {
+    // Mostramos el nombre en la página
+    document.getElementById(
+      "welcomeMessage"
+    ).innerText = `Bienvenido a SALTACOM, ${nombreUsuario}!`;
+
+    // Mostramos un alert de bienvenida
+    alert(`¡Bienvenido a SALTACOM, ${nombreUsuario}! Disfruta tu visita.`);
+  }
+});
