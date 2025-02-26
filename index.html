@@ -8,14 +8,18 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <link rel="stylesheet" href="style.css" />
-    <title>Tienda Online</title>
+    <title>SaltaCel</title>
   </head>
   <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">SALTACOM</a>
+        <a class="navbar-brand" href="#">SALTACEL</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -83,20 +87,20 @@
       </div>
     </nav>
 
-    <!-- Main content -->
+    <!-- Seccion Bienvenidos main -->
     <main>
       <section class="quienes-somos text-center">
         <h2 id="welcomeMessage">Bienvenidos a SALTACOM</h2>
 
         <p>
-          En SALTACOM nos dedicamos a ofrecerte los mejores productos
-          tecnológicos del mercado. Nuestro objetivo es brindarte calidad y
-          satisfacción en cada compra. ¡Explora nuestro catálogo y descubre lo
-          que tenemos para ti!
+          En SALTACEL nos dedicamos a ofrecerte los mejores celulares del
+          mercado. Nuestro objetivo es brindarte calidad y satisfacción en cada
+          compra con su respectiva garantia de 1 año. ¡Explora nuestro catálogo
+          y descubre lo que tenemos para ti!
         </p>
       </section>
 
-      <!-- Sección de carrito de compras -->
+      <!-- Seccion de carrito de compras -->
       <section class="container mt-5">
         <h2 class="text-center mb-4">Carrito de Compras</h2>
         <div id="cartContainer" class="mb-4">
@@ -110,15 +114,13 @@
                 <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="cartItems">
-              <!-- Los productos del carrito se agregarán aquí -->
-            </tbody>
+            <tbody id="cartItems"></tbody>
           </table>
           <h4 id="totalPrice" class="text-end">Total: $0</h4>
         </div>
       </section>
 
-      <!-- Sección de productos -->
+      <!-- Sección de celulares -->
       <section class="container mt-5">
         <h2 class="text-center mb-4">Nuestros Celulares</h2>
 
@@ -138,10 +140,10 @@
               <div class="card-body">
                 <h5 class="card-title">Samsung Galaxy S23</h5>
                 <p class="card-text">Pantalla AMOLED 6.1", 8GB RAM, 256GB.</p>
-                <p class="card-price">$1,200</p>
+                <p class="card-price">$1.200.000</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Samsung Galaxy S23', 1200)">
+                  onclick="addToCart('Samsung Galaxy S23', 1200000)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -164,10 +166,10 @@
                 <p class="card-text">
                   Pantalla Super Retina, 128GB, Cámara 48MP.
                 </p>
-                <p class="card-price">$1,300</p>
+                <p class="card-price">$1.500.000</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('iPhone 14 Pro', 1300)">
+                  onclick="addToCart('iPhone 14 Pro', 1500000)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -188,10 +190,10 @@
               <div class="card-body">
                 <h5 class="card-title">Xiaomi 13 Ultra</h5>
                 <p class="card-text">Snapdragon 8 Gen 2, 12GB RAM, 512GB.</p>
-                <p class="card-price">$1,000</p>
+                <p class="card-price">$1.350.000</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Xiaomi 13 Ultra', 1000)">
+                  onclick="addToCart('Xiaomi 13 Ultra', 1350000)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -212,10 +214,10 @@
               <div class="card-body">
                 <h5 class="card-title">Google Pixel 7</h5>
                 <p class="card-text">Cámara de 50MP, 128GB, Android puro.</p>
-                <p class="card-price">$899</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Google Pixel 7', 899)">
+                  onclick="addToCart('Google Pixel 7', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -236,10 +238,10 @@
               <div class="card-body">
                 <h5 class="card-title">OnePlus 11</h5>
                 <p class="card-text">Pantalla Fluid AMOLED, 16GB RAM, 256GB.</p>
-                <p class="card-price">$799</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('OnePlus 11', 799)">
+                  onclick="addToCart('OnePlus 11', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -260,10 +262,10 @@
               <div class="card-body">
                 <h5 class="card-title">Sony Xperia 1 IV</h5>
                 <p class="card-text">Pantalla 4K HDR, 12GB RAM, 256GB.</p>
-                <p class="card-price">$1,299</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Sony Xperia 1 IV', 1299)">
+                  onclick="addToCart('Sony Xperia 1 IV', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -284,10 +286,10 @@
               <div class="card-body">
                 <h5 class="card-title">Nokia G50</h5>
                 <p class="card-text">5G, 4GB RAM, 128GB.</p>
-                <p class="card-price">$299</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Nokia G50', 299)">
+                  onclick="addToCart('Nokia G50', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -308,10 +310,10 @@
               <div class="card-body">
                 <h5 class="card-title">Motorola Edge 30</h5>
                 <p class="card-text">Pantalla OLED, 144Hz, 8GB RAM.</p>
-                <p class="card-price">$499</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Motorola Edge 30', 499)">
+                  onclick="addToCart('Motorola Edge 30', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -332,10 +334,10 @@
               <div class="card-body">
                 <h5 class="card-title">Huawei P50 Pro</h5>
                 <p class="card-text">Cámara cuádruple, 8GB RAM, 256GB.</p>
-                <p class="card-price">$1,199</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Huawei P50 Pro', 1199)">
+                  onclick="addToCart('Huawei P50 Pro', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -356,10 +358,10 @@
               <div class="card-body">
                 <h5 class="card-title">Asus ROG Phone 6</h5>
                 <p class="card-text">Gaming, 18GB RAM, 512GB.</p>
-                <p class="card-price">$999</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Asus ROG Phone 6', 999)">
+                  onclick="addToCart('Asus ROG Phone 6', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -380,10 +382,10 @@
               <div class="card-body">
                 <h5 class="card-title">Realme GT 2 Pro</h5>
                 <p class="card-text">Pantalla AMOLED, 12GB RAM, 256GB.</p>
-                <p class="card-price">$749</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Realme GT 2 Pro', 749)">
+                  onclick="addToCart('Realme GT 2 Pro', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -404,10 +406,10 @@
               <div class="card-body">
                 <h5 class="card-title">Vivo X80 Pro</h5>
                 <p class="card-text">Cámara Zeiss, 12GB RAM, 256GB.</p>
-                <p class="card-price">$1,199</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Vivo X80 Pro', 1199)">
+                  onclick="addToCart('Vivo X80 Pro', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -428,10 +430,10 @@
               <div class="card-body">
                 <h5 class="card-title">Oppo Find X5 Pro</h5>
                 <p class="card-text">Cámara triple, 12GB RAM, 256GB.</p>
-                <p class="card-price">$1,099</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('Oppo Find X5 Pro', 1099)">
+                  onclick="addToCart('Oppo Find X5 Pro', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -452,10 +454,10 @@
               <div class="card-body">
                 <h5 class="card-title">ZTE Axon 20</h5>
                 <p class="card-text">Primera cámara bajo pantalla, 8GB RAM.</p>
-                <p class="card-price">$499</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('ZTE Axon 20', 499)">
+                  onclick="addToCart('ZTE Axon 20', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -476,10 +478,10 @@
               <div class="card-body">
                 <h5 class="card-title">LG Velvet</h5>
                 <p class="card-text">Diseño elegante, 6GB RAM, 128GB.</p>
-                <p class="card-price">$599</p>
+                <p class="card-price">$1</p>
                 <button
                   class="btn btn-primary"
-                  onclick="addToCart('LG Velvet', 599)">
+                  onclick="addToCart('LG Velvet', 1)">
                   Agregar al Carrito
                 </button>
               </div>
@@ -490,13 +492,31 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="social-links">
-        <a href="#" class="social-icon">🔗</a>
-        <a href="#" class="social-icon">🔗</a>
-        <a href="#" class="social-icon">🔗</a>
+    <footer class="bg-dark text-white text-center py-3">
+      <p>Síguenos en nuestras redes sociales:</p>
+      <div>
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          class="text-white mx-2">
+          <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a
+          href="https://www.instagram.com"
+          target="_blank"
+          class="text-white mx-2">
+          <i class="fab fa-instagram fa-2x"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="text-white mx-2">
+          <i class="fab fa-twitter fa-2x"></i>
+        </a>
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          class="text-white mx-2">
+          <i class="fab fa-youtube fa-2x"></i>
+        </a>
       </div>
-      <p>&copy; 2025 Tienda Online</p>
     </footer>
 
     <script

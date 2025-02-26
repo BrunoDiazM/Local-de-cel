@@ -1,25 +1,36 @@
+/* Alert */
+
+document.addEventListener("DOMContentLoaded", function () {
+  let nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:"); // Pide el nombre al usuario
+
+  if (nombreUsuario) {
+    document.getElementById(
+      "welcomeMessage"
+    ).innerText = `Bienvenido a SALTACEL, ${nombreUsuario}!`; // Msuestra el mensaje de bienvenida
+    alert(`¡Bienvenido a SALTACEL, ${nombreUsuario}! Disfruta tu visita.`);
+  }
+});
+
 /*  Modo Oscuro */
 
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.getElementById("darkModeToggle");
   const body = document.body;
 
-  // Verificar si hay un modo guardado en localStorage
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
-    darkModeToggle.textContent = "☀️"; // Sol cuando está en modo oscuro
+    darkModeToggle.textContent = "☀️"; // Sol cuando esta en modo oscuro
   }
 
   darkModeToggle.addEventListener("click", function () {
     body.classList.toggle("dark-mode");
 
-    // Guardar la preferencia en localStorage
     if (body.classList.contains("dark-mode")) {
       localStorage.setItem("darkMode", "enabled");
       darkModeToggle.textContent = "☀️";
     } else {
       localStorage.setItem("darkMode", "disabled");
-      darkModeToggle.textContent = "🌙";
+      darkModeToggle.textContent = "🌙"; // Luna cuando esta en modo claro
     }
   });
 });
@@ -41,10 +52,9 @@ function filterProducts() {
   });
 }
 
-// Agregar un evento para filtrar en tiempo real
 document
   .getElementById("searchInput")
-  .addEventListener("input", filterProducts);
+  .addEventListener("input", filterProducts); // Agregar un evento para mostrarlo en tiempo real
 
 /* carrito de compras */
 
@@ -97,21 +107,3 @@ function removeFromCart(productName) {
   cart = cart.filter((item) => item.name !== productName);
   updateCart();
 }
-
-/* Alert */
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Pedimos el nombre al usuario
-  let nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:");
-
-  // Si el usuario ingresa un nombre y no cancela el prompt
-  if (nombreUsuario) {
-    // Mostramos el nombre en la página
-    document.getElementById(
-      "welcomeMessage"
-    ).innerText = `Bienvenido a SALTACOM, ${nombreUsuario}!`;
-
-    // Mostramos un alert de bienvenida
-    alert(`¡Bienvenido a SALTACOM, ${nombreUsuario}! Disfruta tu visita.`);
-  }
-});
