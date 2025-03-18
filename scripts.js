@@ -1,25 +1,30 @@
 /* Alert */
-
 document.addEventListener("DOMContentLoaded", function () {
-  let nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:"); // Pide el nombre al usuario
+  let nombreUsuario = localStorage.getItem("nombreUsuario"); // Recupera el nombre si ya existe
+
+  if (!nombreUsuario) {
+    nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:");
+    if (nombreUsuario) {
+      localStorage.setItem("nombreUsuario", nombreUsuario); // Guardarlo en LocalStorage
+    }
+  }
 
   if (nombreUsuario) {
     document.getElementById(
       "welcomeMessage"
-    ).innerText = `Bienvenido a SALTACEL, ${nombreUsuario}!`; // Msuestra el mensaje de bienvenida
+    ).innerText = `Bienvenido a SALTACEL, ${nombreUsuario}!`;
     alert(`¡Bienvenido a SALTACEL, ${nombreUsuario}! Disfruta tu visita.`);
   }
 });
 
-/*  Modo Oscuro */
-
+/* Modo Oscuro */
 document.addEventListener("DOMContentLoaded", function () {
   const darkModeToggle = document.getElementById("darkModeToggle");
   const body = document.body;
 
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
-    darkModeToggle.textContent = "☀️"; // Sol cuando esta en modo oscuro
+    darkModeToggle.textContent = "☀️"; // Sol cuando está en modo oscuro
   }
 
   darkModeToggle.addEventListener("click", function () {
@@ -30,13 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
       darkModeToggle.textContent = "☀️";
     } else {
       localStorage.setItem("darkMode", "disabled");
-      darkModeToggle.textContent = "🌙"; // Luna cuando esta en modo claro
+      darkModeToggle.textContent = "🌙"; // Luna cuando está en modo claro
     }
   });
 });
 
-/* buscador */
-
+/* Buscador */
 function filterProducts() {
   const input = document.getElementById("searchInput");
   const filter = input.value.toLowerCase();
@@ -56,10 +60,19 @@ document
   .getElementById("searchInput")
   .addEventListener("input", filterProducts); // Agregar un evento para mostrarlo en tiempo real
 
-/* carrito de compras */
-
+/* Carrito de Compras con LocalStorage */
 let cart = [];
 
+// Cargar el carrito desde LocalStorage al iniciar
+document.addEventListener("DOMContentLoaded", function () {
+  const storedCart = localStorage.getItem("cart");
+  if (storedCart) {
+    cart = JSON.parse(storedCart);
+    updateCart(); // Actualizar la vista del carrito
+  }
+});
+
+// Función para agregar productos al carrito y guardarlo en LocalStorage
 function addToCart(productName, price) {
   const existingProduct = cart.find((item) => item.name === productName);
   if (existingProduct) {
@@ -67,9 +80,33 @@ function addToCart(productName, price) {
   } else {
     cart.push({ name: productName, price: price, quantity: 1 });
   }
+  saveCart(); // Guardar en LocalStorage
   updateCart();
 }
 
+// Función para guardar el carrito en LocalStorage
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Función para actualizar la cantidad de productos y guardar cambios
+function updateQuantity(productName, quantity) {
+  const product = cart.find((item) => item.name === productName);
+  if (product) {
+    product.quantity = parseInt(quantity);
+    saveCart(); // Guardar cambios en LocalStorage
+    updateCart();
+  }
+}
+
+// Función para eliminar productos del carrito y actualizar LocalStorage
+function removeFromCart(productName) {
+  cart = cart.filter((item) => item.name !== productName);
+  saveCart(); // Guardar cambios en LocalStorage
+  updateCart();
+}
+
+// Función para actualizar la vista del carrito
 function updateCart() {
   const cartItems = document.getElementById("cartItems");
   const totalPriceElement = document.getElementById("totalPrice");
@@ -93,17 +130,4 @@ function updateCart() {
   });
 
   totalPriceElement.textContent = `Total: $${total}`;
-}
-
-function updateQuantity(productName, quantity) {
-  const product = cart.find((item) => item.name === productName);
-  if (product) {
-    product.quantity = parseInt(quantity);
-    updateCart();
-  }
-}
-
-function removeFromCart(productName) {
-  cart = cart.filter((item) => item.name !== productName);
-  updateCart();
 }
