@@ -126,6 +126,7 @@ main {
 .dark-mode {
   background-color: #222;
   color: white;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dark-mode .navbar {
@@ -149,6 +150,9 @@ main {
 .dark-mode .btn-outline-dark:hover {
   background-color: #ff9800;
   color: white;
+}
+.cart-items {
+  transition: opacity 0.3s ease-in-out;
 }
 
 /*Tarjetas celulares*/
