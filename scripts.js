@@ -1,12 +1,10 @@
-/* Alert */
+// Bienvenida y nombre guardado
 document.addEventListener("DOMContentLoaded", function () {
-  let nombreUsuario = localStorage.getItem("nombreUsuario"); // Recupera el nombre si ya existe
+  let nombreUsuario = localStorage.getItem("nombreUsuario");
 
   if (!nombreUsuario) {
     nombreUsuario = prompt("Bienvenido, por favor ingresa tu nombre:");
-    if (nombreUsuario) {
-      localStorage.setItem("nombreUsuario", nombreUsuario); // Guardarlo en LocalStorage
-    }
+    if (nombreUsuario) localStorage.setItem("nombreUsuario", nombreUsuario);
   }
 
   if (nombreUsuario) {
@@ -17,117 +15,139 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/* Modo Oscuro */
+// Modo Oscuro
 document.addEventListener("DOMContentLoaded", function () {
-  const darkModeToggle = document.getElementById("darkModeToggle");
+  const toggle = document.getElementById("darkModeToggle");
   const body = document.body;
 
   if (localStorage.getItem("darkMode") === "enabled") {
     body.classList.add("dark-mode");
-    darkModeToggle.textContent = "☀️"; // Sol cuando está en modo oscuro
+    toggle.textContent = "☀️";
   }
 
-  darkModeToggle.addEventListener("click", function () {
+  toggle.addEventListener("click", () => {
     body.classList.toggle("dark-mode");
-
-    if (body.classList.contains("dark-mode")) {
-      localStorage.setItem("darkMode", "enabled");
-      darkModeToggle.textContent = "☀️";
-    } else {
-      localStorage.setItem("darkMode", "disabled");
-      darkModeToggle.textContent = "🌙"; // Luna cuando está en modo claro
-    }
+    const mode = body.classList.contains("dark-mode") ? "enabled" : "disabled";
+    localStorage.setItem("darkMode", mode);
+    toggle.textContent = mode === "enabled" ? "☀️" : "🌙";
   });
 });
 
-/* Buscador */
+// Buscador
 function filterProducts() {
-  const input = document.getElementById("searchInput");
-  const filter = input.value.toLowerCase();
-  const productCards = document.querySelectorAll(".product-card");
-
-  productCards.forEach((card) => {
+  const filter = document.getElementById("searchInput").value.toLowerCase();
+  document.querySelectorAll(".product-card").forEach((card) => {
     const title = card.querySelector(".card-title").textContent.toLowerCase();
-    if (title.includes(filter)) {
-      card.style.display = ""; // Muestra la tarjeta
-    } else {
-      card.style.display = "none"; // Oculta la tarjeta
-    }
+    card.style.display = title.includes(filter) ? "" : "none";
   });
 }
-
 document
   .getElementById("searchInput")
-  .addEventListener("input", filterProducts); // Agregar un evento para mostrarlo en tiempo real
+  .addEventListener("input", filterProducts);
 
-/* Carrito de Compras con LocalStorage */
+// Carrito
 let cart = [];
+let products = [];
 
-// Cargar el carrito desde LocalStorage al iniciar
+// Cargar carrito desde LocalStorage
 document.addEventListener("DOMContentLoaded", function () {
   const storedCart = localStorage.getItem("cart");
   if (storedCart) {
     cart = JSON.parse(storedCart);
-    updateCart(); // Actualizar la vista del carrito
+    updateCart();
   }
 });
 
-// Función para agregar productos al carrito y guardarlo en LocalStorage
-function addToCart(productName, price) {
-  const existingProduct = cart.find((item) => item.name === productName);
-  if (existingProduct) {
-    existingProduct.quantity++;
-  } else {
-    cart.push({ name: productName, price: price, quantity: 1 });
-  }
-  saveCart(); // Guardar en LocalStorage
-  updateCart();
+// Mostrar productos desde products.json
+fetch("products.json")
+  .then((res) => res.json())
+  .then((data) => {
+    products = data;
+    mostrarProductos(data);
+  })
+  .catch((err) => console.error("Error al cargar productos:", err));
+
+// Mostrar productos en HTML
+function mostrarProductos(productos) {
+  const contenedor = document.getElementById("contenedor-productos");
+  productos.forEach((producto) => {
+    const div = document.createElement("div");
+    div.classList.add("product-card");
+    div.innerHTML = `
+      <h3 class="card-title">${producto.nombre}</h3>
+      <img src="${producto.imagen}" alt="${producto.nombre}" />
+      <p>Precio: $${producto.precio}</p>
+      <button onclick="agregarAlCarrito(${producto.id})">Agregar al carrito</button>
+    `;
+    contenedor.appendChild(div);
+  });
 }
 
-// Función para guardar el carrito en LocalStorage
+// Agregar al carrito
+function agregarAlCarrito(id) {
+  const producto = products.find((p) => p.id === id);
+  if (!producto) return;
+
+  const existente = cart.find((item) => item.id === id);
+  if (existente) {
+    existente.quantity++;
+  } else {
+    cart.push({ ...producto, quantity: 1 });
+  }
+
+  saveCart();
+  updateCart();
+  alert(`${producto.nombre} agregado al carrito.`);
+}
+
+// Guardar carrito en LocalStorage
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Función para actualizar la cantidad de productos y guardar cambios
-function updateQuantity(productName, quantity) {
-  const product = cart.find((item) => item.name === productName);
-  if (product) {
+// Eliminar del carrito
+function removeFromCart(id) {
+  cart = cart.filter((item) => item.id !== id);
+  saveCart();
+  updateCart();
+}
+
+// Cambiar cantidad
+function updateQuantity(id, quantity) {
+  const product = cart.find((item) => item.id === id);
+  if (product && quantity > 0) {
     product.quantity = parseInt(quantity);
-    saveCart(); // Guardar cambios en LocalStorage
+    saveCart();
     updateCart();
   }
 }
 
-// Función para eliminar productos del carrito y actualizar LocalStorage
-function removeFromCart(productName) {
-  cart = cart.filter((item) => item.name !== productName);
-  saveCart(); // Guardar cambios en LocalStorage
-  updateCart();
-}
-
-// Función para actualizar la vista del carrito
+// Actualizar vista del carrito
 function updateCart() {
   const cartItems = document.getElementById("cartItems");
   const totalPriceElement = document.getElementById("totalPrice");
+  const cartCount = document.getElementById("cartCount");
   cartItems.innerHTML = "";
+
   let total = 0;
+  let totalQuantity = 0;
 
   cart.forEach((item) => {
-    const subtotal = item.price * item.quantity;
+    const subtotal = item.precio * item.quantity;
     total += subtotal;
+    totalQuantity += item.quantity;
+
     cartItems.innerHTML += `
-            <tr>
-              <td>${item.name}</td>
-              <td>$${item.price}</td>
-              <td>
-                <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity('${item.name}', this.value)" />
-              </td>
-              <td>$${subtotal}</td>
-              <td><button class="btn btn-danger" onclick="removeFromCart('${item.name}')">Eliminar</button></td>
-            </tr>
-          `;
+      <tr>
+        <td>${item.nombre}</td>
+        <td>$${item.precio}</td>
+        <td><input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)" /></td>
+        <td>$${subtotal}</td>
+        <td><button class="btn btn-danger" onclick="removeFromCart(${item.id})">Eliminar</button></td>
+      </tr>
+    `;
   });
 
   totalPriceElement.textContent = `Total: $${total}`;
+  cartCount.textContent = totalQuantity;
 }

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nombre": "Samsung Galaxy S23",
+    "precio": 1200000,
+    "imagen": "assets/Galaxy-S23.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "iPhone 14 Pro",
+    "precio": 1500000,
+    "imagen": "assets/iphone.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Xiaomi 13 Ultra",
+    "precio": 1350000,
+    "imagen": "assets/Xiaomi-13.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Google Pixel 7",
+    "precio": 1000000,
+    "imagen": "assets/pixel7.jpeg"
+  },
+  {
+    "id": 5,
+    "nombre": "OnePlus 11",
+    "precio": 1100000,
+    "imagen": "assets/oneplus.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Sony Xperia 1 IV",
+    "precio": 1250000,
+    "imagen": "assets/sonyx.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Nokia G50",
+    "precio": 600000,
+    "imagen": "assets/nokia.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Motorola Edge 30",
+    "precio": 750000,
+    "imagen": "assets/motoedg.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Huawei P50 Pro",
+    "precio": 1150000,
+    "imagen": "assets/huaweip50.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Asus ROG Phone 6",
+    "precio": 1400000,
+    "imagen": "assets/rogue.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "Realme GT 2 Pro",
+    "precio": 980000,
+    "imagen": "assets/realme.jpeg"
+  },
+  {
+    "id": 12,
+    "nombre": "Vivo X80 Pro",
+    "precio": 1050000,
+    "imagen": "assets/Vivox80.jpg"
+  },
+  {
+    "id": 13,
+    "nombre": "Oppo Find X5 Pro",
+    "precio": 1120000,
+    "imagen": "assets/oppo.jpg"
+  },
+  {
+    "id": 14,
+    "nombre": "ZTE Axon 20",
+    "precio": 670000,
+    "imagen": "assets/zte.jpg"
+  },
+  {
+    "id": 15,
+    "nombre": "LG Velvet",
+    "precio": 630000,
+    "imagen": "assets/lg.jpg"
+  }
+]
