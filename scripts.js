@@ -11,7 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById(
       "welcomeMessage"
     ).innerText = `Bienvenido a SALTACEL, ${nombreUsuario}!`;
-    alert(`¡Bienvenido a SALTACEL, ${nombreUsuario}! Disfruta tu visita.`);
+
+    // SweetAlert2 reemplaza al alert
+    Swal.fire({
+      title: `¡Bienvenido a SALTACEL, ${nombreUsuario}!`,
+      text: "Disfrutá tu visita 😊",
+      icon: "success",
+      confirmButtonText: "Gracias!",
+    });
   }
 });
 
@@ -97,7 +104,15 @@ function agregarAlCarrito(id) {
 
   saveCart();
   updateCart();
-  alert(`${producto.nombre} agregado al carrito.`);
+
+  // SweetAlert2 reemplaza al alert del carrito
+  Swal.fire({
+    title: "¡Producto agregado!",
+    text: `${producto.nombre} fue agregado al carrito.`,
+    icon: "success",
+    timer: 1500,
+    showConfirmButton: false,
+  });
 }
 
 // Guardar carrito en LocalStorage
@@ -151,3 +166,48 @@ function updateCart() {
   totalPriceElement.textContent = `Total: $${total}`;
   cartCount.textContent = totalQuantity;
 }
+
+// Finalizar compra
+document.addEventListener("DOMContentLoaded", function () {
+  const finalizarCompraBtn = document.getElementById("finalizarCompraBtn");
+
+  finalizarCompraBtn.addEventListener("click", () => {
+    if (cart.length === 0) {
+      Swal.fire({
+        icon: "info",
+        title: "Tu carrito está vacío",
+        text: "Agrega productos antes de finalizar la compra.",
+      });
+      return;
+    }
+
+    let resumen = "";
+    let total = 0;
+
+    cart.forEach((item) => {
+      const subtotal = item.precio * item.quantity;
+      resumen += `${item.nombre} x ${item.quantity} = $${subtotal}\n`;
+      total += subtotal;
+    });
+
+    Swal.fire({
+      title: "Resumen de tu compra",
+      text: `${resumen}\nTotal a pagar: $${total}`,
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonText: "Confirmar compra",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        cart = [];
+        saveCart();
+        updateCart();
+        Swal.fire({
+          icon: "success",
+          title: "¡Compra realizada con éxito!",
+          text: "Gracias por tu compra en SALTACEL.",
+        });
+      }
+    });
+  });
+});
