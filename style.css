@@ -1,3 +1,11 @@
+:root {
+  --color-primario: #0d6efd;
+  --color-secundario: #ff6700;
+  --color-fondo: #E9FFF9;
+  --color-texto: #212529;
+  --color-blanco: #ffffff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,15 +14,16 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 header {
-  background-color: #333;
-  color: rgb(255, 255, 255);
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
@@ -31,7 +40,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-  color: white;
+  color: var(--color-blanco);
   text-decoration: none;
 }
 
@@ -65,7 +74,7 @@ main {
 .product-image {
   max-width: 350px;
   margin: 10px;
-  border: 5px solid #333;
+  border: 5px solid var(--color-texto);
   border-radius: 7px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s;
@@ -74,7 +83,9 @@ main {
 .product-image:hover {
   transform: scale(1.05);
 }
+
 .product-card {
+  background-color: var(--color-blanco);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 15px;
@@ -89,8 +100,8 @@ main {
 
 /* footer */
 .footer {
-  background-color: #333;
-  color: white;
+  background-color: var(--color-texto);
+  color: var(--color-blanco);
   padding: 20px;
   text-align: center;
 }
@@ -102,30 +113,30 @@ main {
 .footer .social-icon {
   font-size: 25px;
   margin: 0 10px;
-  color: white;
+  color: var(--color-blanco);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer .social-icon:hover {
-  color: #ff9800;
+  color: var(--color-secundario);
 }
 
 .btn-custom {
-  background-color: #ff6700;
-  color: #ffffff;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
   border: none;
 }
 
 .btn-custom:hover {
-  background-color: #02040f;
-  color: #ff6700;
+  background-color: var(--color-texto);
+  color: var(--color-secundario);
 }
 
 /*Modo oscuro*/
 .dark-mode {
   background-color: #222;
-  color: white;
+  color: var(--color-blanco);
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -134,7 +145,7 @@ main {
 }
 
 .dark-mode .product-image {
-  border-color: white;
+  border-color: var(--color-blanco);
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
@@ -143,19 +154,20 @@ main {
 }
 
 .dark-mode .btn-outline-dark {
-  background-color: white;
-  color: black;
+  background-color: var(--color-blanco);
+  color: var(--color-texto);
 }
 
 .dark-mode .btn-outline-dark:hover {
-  background-color: #ff9800;
-  color: white;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
 }
+
 .cart-items {
   transition: opacity 0.3s ease-in-out;
 }
 
-/*Tarjetas celulares*/
+/* Tarjetas celulares */
 .card {
   border-radius: 10px;
   overflow: hidden;
@@ -177,49 +189,52 @@ main {
   font-weight: bold;
   color: #28a745;
 }
-/* Estilos para la sección de productos */
-/* Contenedor general de productos */
+
+/* Productos */
 #contenedor-productos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* Tarjetas individuales */
 .product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
   text-align: center;
   transition: transform 0.2s ease;
 }
 
-.product-card:hover {
-  transform: scale(1.03);
-}
-
-/* Título */
 .product-card .card-title {
   font-size: 1.1rem;
   margin: 10px 0;
 }
 
-/* Imagen del producto */
 .product-card img {
-  width: 150px;
-  height: 150px;
-  object-fit: contain;
-  margin: 0 auto 10px;
+  max-width: 100%;
+  max-height: 180px;
+  width: auto;
+  height: auto;
   display: block;
+  margin: 0 auto 10px;
+  object-fit: contain;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-/* Botón */
 .product-card button {
-  background-color: #007bff;
+  background-color: var(--color-primario);
   border: none;
-  color: white;
+  color: var(--color-blanco);
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -231,14 +246,13 @@ main {
   background-color: #0056b3;
 }
 
-
-/*/* Estilos para la sección de contacto */
+/* Toast */
 .custom-toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background-color: #198754;
-  color: white;
+  color: var(--color-blanco);
   padding: 12px 20px;
   border-radius: 8px;
   opacity: 0;
@@ -251,4 +265,74 @@ main {
 .custom-toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Estilos Responsive */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header nav ul li {
+    margin: 10px 0;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  .quienes-somos h2 {
+    font-size: 1.5em;
+  }
+
+  .quienes-somos p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+
+  #contenedor-productos {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .product-card img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+
+  .card-price {
+    font-size: 1rem;
+  }
+
+  .btn-custom,
+  .product-card button {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+
+  .footer .social-icon {
+    font-size: 20px;
+  }
+
+  .custom-toast {
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.85rem;
+    padding: 10px 15px;
+  }
 }
